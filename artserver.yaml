@@ -26,5 +26,9 @@ packages:
 
 runcmd:
   - updatedb
+  - ["sudo touch /run/systemd/resolve/stub-resolv.conf"]
+  - ["sudo echo -e 'nameserver 8.8.8.8\nnameserver 8.8.4.4' | sudo tee -a /etc/resolv.conf"]
+  - ["sudo systemctl restart networkd-dispatcher.service"]
+  - ["sudo systemctl restart systemd-networkd.service"]
 
 final_message: "Server 'artserver' setup is complete. Login with username 'artadmin' and password 'art12345'"
